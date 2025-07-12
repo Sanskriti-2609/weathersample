@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyCast</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/9047d05aca.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="image.png">
+</head>
+<body>
+
+  <button id="theme-toggle">🌙 Dark Mode</button>
+
+  <div class="overlay">
+    <h1 class="logo">SkyCast</h1>
+
+    <div class="search-box">
+      <input type="text" placeholder="Enter Your Location" class="input-box" />
+      <button class="fa-solid fa-magnifying-glass-location" id="searchBtn"></button>
+    </div>
+
+    <div class="weather-card">
+      <div class="weather-body">
+        <img src="clear.png" alt="weatherimg" class="weather-img" />
+
+        <div class="weather-box">
+          <p class="temperature">0<sup>°C</sup></p>
+          <p class="description">Sunny</p>
+        </div>
+
+        <div class="weather-details">
+          <div class="humidity">
+            <i class="fa-solid fa-droplet"></i>
+            <div class="text">
+              <span id="humidity">45%</span>
+              <p>Humidity</p>
+            </div>
+          </div>
+
+          <div class="wind">
+            <i class="fa-solid fa-wind"></i>
+            <div class="text">
+              <span id="wind-speed">12Km/H</span>
+              <p>Wind Speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
