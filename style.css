@@ -7,7 +7,6 @@
   outline: none;
 }
 
-/* Blurry background */
 body::before {
   content: '';
   position: fixed;
@@ -19,7 +18,7 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(4px);
+  
   z-index: -1;
 }
 
@@ -27,7 +26,6 @@ body {
   position: relative;
 }
 
-/* Toggle button */
 #theme-toggle {
   position: fixed;
   top: 20px;
@@ -73,7 +71,7 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 10px 20px;
   border-radius: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   gap: 10px;
   flex-wrap: nowrap;
 }
@@ -107,7 +105,14 @@ body {
   background-color: #dfe6e9;
 }
 
-/* Weather card with fade */
+.error-msg {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+/* Weather card */
 .weather-card {
   display: none;
   opacity: 0;
@@ -190,7 +195,7 @@ body {
   font-weight: 700;
 }
 
-/* Dark Mode Styles */
+/* Dark Mode */
 body.dark-mode::before {
   filter: blur(4px) brightness(0.5);
 }
@@ -229,7 +234,11 @@ body.dark-mode #theme-toggle {
   color: white;
 }
 
-/* Responsive for mobile */
+body.dark-mode .error-msg {
+  color: #ff6b6b;
+}
+
+/* Responsive */
 @media (max-width: 480px) {
   .logo {
     font-size: 48px;
@@ -284,3 +293,6 @@ body.dark-mode #theme-toggle {
     font-size: 15px;
   }
 }
+
+
+  
