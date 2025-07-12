@@ -6,9 +6,9 @@ const description = document.querySelector('.description');
 const humidity = document.getElementById('humidity');
 const windSpeed = document.getElementById('wind-speed');
 const weatherCard = document.querySelector('.weather-card');
+const errorMsg = document.getElementById('error-msg');
 
-// 🔁 Replace this with your actual API key
-const apiKey = "bd840730865357b3e9522614eca4822f";
+const apiKey = "bd840730865357b3e9522614eca4822f"; // Replace with your API key
 
 async function checkWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -17,11 +17,19 @@ async function checkWeather(city) {
     const response = await fetch(url);
     const data = await response.json();
 
-    if (data.cod !== 200) {
-      alert(data.message);
+    if (response.status === 404 || data.cod === "404") {
+      weatherCard.classList.add('show');
+      weatherImg.src = "404.png";
+      temperature.innerHTML = `--<sup>°C</sup>`;
+      description.innerText = "Not Found";
+      humidity.innerText = "--%";
+      windSpeed.innerText = "--Km/H";
+      errorMsg.style.display = "block";
+      errorMsg.innerText = "City not found. Please enter a valid name.";
       return;
     }
 
+    // Valid city
     temperature.innerHTML = `${Math.round(data.main.temp)}<sup>°C</sup>`;
     description.innerText = data.weather[0].main;
     humidity.innerText = `${data.main.humidity}%`;
@@ -40,10 +48,18 @@ async function checkWeather(city) {
     }
 
     weatherCard.classList.add('show');
+    errorMsg.style.display = "none";
 
   } catch (error) {
-    console.error("Error fetching weather:", error);
-    alert("Something went wrong.");
+    console.error("Fetch error:", error);
+    weatherCard.classList.add('show');
+    weatherImg.src = "error.png";
+    temperature.innerHTML = `--<sup>°C</sup>`;
+    description.innerText = "Error";
+    humidity.innerText = "--%";
+    windSpeed.innerText = "--Km/H";
+    errorMsg.style.display = "block";
+    errorMsg.innerText = "Something went wrong. Try again later.";
   }
 }
 
@@ -54,7 +70,7 @@ searchBtn.addEventListener('click', () => {
   }
 });
 
-// 🌙 Dark Mode Toggle
+// 🌙 Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
@@ -62,3 +78,7 @@ themeToggle.addEventListener('click', () => {
     ? '☀️ Light Mode' 
     : '🌙 Dark Mode';
 });
+   
+
+    
+
